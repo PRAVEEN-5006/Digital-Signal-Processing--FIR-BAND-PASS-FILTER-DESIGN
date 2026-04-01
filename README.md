@@ -2,7 +2,7 @@
 ## AIM:
 To generate design of Band Pass FIR digital filter using Window.
 ## Software Required:
-MAT LAB R2012.
+MATLAB R2012.
 ## Algorithm:
 Step 1: Open MATLAB and Write the program.
 
@@ -19,7 +19,34 @@ Step 5: Plot the magnitude spectrum with x-label and y-label with suitable title
 Step 6: Terminate the program.
 
 ## PROGRAM: 
+```
+clc; % clear screen
+clear all; % clear screen
+close all; % close all figure windows
+Wc1=input('enter the value of Wc1='); 
+Wc2=input('enter the value of Wc2='); 
+N=input('enter the value of N=');
+alpha=(N-1)/2; 
+eps=0.001;
 
+%Band Pass Filter Coefficient
+n=0:1:N-1; 
+hd=(sin(Wc1*(n-alpha+eps))-sin(Wc2*(n-alpha+eps)))./((n-alpha+eps)*pi)
+
+%Hanning Window Sequence 
+n=0:1:N-1; 
+wh=0.5-0.5*cos((2*pi*n)/(N-1)) 
+hn=hd.*wh
+
+% Plot the Low Pass Filter with Hanning Window Technique
+w=0:0.01:pi; 
+h=freqz(hn,1,w); 
+plot(w/pi,abs(h),'blue');
+```
 ## OUTPUT:
+<img width="830" height="665" alt="image" src="https://github.com/user-attachments/assets/8289ac81-8f83-46f3-988c-f6b901b6fe51" />
 
 ## RESULT:
+<img width="861" height="1281" alt="image" src="https://github.com/user-attachments/assets/fcc6f4d8-673a-4299-b0a7-80a6dec9ab6a" />
+
+
